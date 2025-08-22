@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Users, Zap, Eye, EyeOff, Mail, Lock, User as UserIcon } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import type { User } from '@supabase/supabase-js';
+import Homepage from './Homepage';
 
 export default function AINicheMatchMVP() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showHomepage, setShowHomepage] = useState(true);
   const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -90,6 +92,13 @@ export default function AINicheMatchMVP() {
           className="w-8 h-8 border-2 border-white border-t-transparent rounded-full"
         />
       </div>
+    );
+  }
+
+  // Show homepage for non-authenticated users
+  if (!user && showHomepage) {
+    return (
+      <Homepage onGetStarted={() => setShowHomepage(false)} />
     );
   }
 
@@ -205,6 +214,13 @@ export default function AINicheMatchMVP() {
             </motion.button>
 
             <div className="text-center">
+              <button
+                type="button"
+                onClick={() => setShowHomepage(true)}
+                className="text-white/60 hover:text-white/80 transition-colors text-sm mb-4 block"
+              >
+                ← Back to Homepage
+              </button>
               <button
                 type="button"
                 onClick={() => {
