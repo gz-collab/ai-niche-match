@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Users, Zap, Eye, EyeOff, Mail, Lock, User } from 'lucide-react';
+import { Heart, Users, Zap, Eye, EyeOff, Mail, Lock, User as UserIcon } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import type { User } from '@supabase/supabase-js';
 
@@ -234,7 +234,7 @@ export default function AINicheMatchMVP() {
             </div>
             <div className="flex items-center space-x-4">
               <div className="flex items-center text-white/80">
-                <User className="w-5 h-5 mr-2" />
+                <UserIcon className="w-5 h-5 mr-2" />
                 <span className="text-sm">{user.email}</span>
               </div>
               <button
